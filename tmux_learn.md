@@ -17,72 +17,80 @@ tmux的命令有两种执行方式：1,快捷键，也是最常用的; 2,命令�
 记录的格式: 命令名(默认快捷键映射) : 命令解析。(命令名可用于自定义映射)
 
 ## session
-suspend-client		[ C-z ]		"挂起当前会话，会退出tmux模式，回到系统terminal，可通过tmux attach返回;"
-detach-client		[ d ]		"detach 当前session，看起来效果和suspent-client，目前没发现差异之处;"
-rename-session		[ $ ]		"重命名当前session, 状态栏第1个[]显示的,可用于tmux attach -t [session name]来链接到特定的session;"
-switch-client -p	[ ( ]		"选中前1个session;"
-switch-client -n	[ ) ]		"选中后1个session;"
-choose-client		[ D ]		"通过列表选中session进行链接;"
-switch-client -l	[ L ]		"选中上1个激活的session;"
-refresh-client		[ r ]		"刷新终端;"
-choose-tree			[ s ]		"选择session进行attach;"
+命令Command        |默认映射   |命令简介
+-------------------|-----------|--------------------------------------------------------------------------------------------------
+suspend-client	   |[ C-z ]	   |"挂起当前会话，会退出tmux模式，回到系统terminal，可通过tmux attach返回;"
+detach-client	   |[ d ]	   |"detach 当前session，看起来效果和suspent-client，目前没发现差异之处;"
+rename-session	   |[ $ ]	   |"重命名当前session, 状态栏第1个[]显示的,可用于tmux attach -t [session name]来链接到特定的session;"
+switch-client -p   |[ ( ]	   |"选中前1个session;"
+switch-client -n   |[ ) ]	   |"选中后1个session;"
+choose-client	   |[ D ]	   |"通过列表选中session进行链接;"
+switch-client -l   |[ L ]	   |"选中上1个激活的session;"
+refresh-client	   |[ r ]	   |"刷新终端;"
+choose-tree		   |[ s ]	   |"选择session进行attach;"
 
 
 ## window
-split-window -v		[ " ]		"把当前window分成上下pane;"
-split-window -h		[ % ]		"把当前window分成左右pane;"
-kill-window			[ & ]		"关闭当前window;"
-select-window -t	[ ' ]		"可通过输入window的索引来选中window, 索引从0开始;"
-rename-window		[ , ]		"重命名当前窗口"
-move-window -t		[ . ]		"改变当前window的索引，window的位置会根据索引的顺序进行调整;"
-select-window -t	[0~9]		"选中相应索引的window(0~9);"
-new-window			[ c ]		"新建window;"
-find-window			[ f ]		"在所有windows中匹配字符串;"
-display-message		[ i ]		"在状态栏显示当前window的信息;"
-last-window			[ l ]		"移动到上1个激活window;"
-next-window			[ n ]		"移动到下1个window;"
-choose-window		[ w ]		"通过窗口列表选择当前窗口;"
+命令Command        |默认映射   |命令简介
+-------------------|-----------|-------------------------------------------------------------
+split-window -v    |[ " ]	   |"把当前window分成上下pane;"
+split-window -h	   |[ % ]	   |"把当前window分成左右pane;"
+kill-window		   |[ & ]	   |"关闭当前window;"
+select-window -t   |[ ' ]	   |"可通过输入window的索引来选中window, 索引从0开始;"
+rename-window	   |[ , ]	   |"重命名当前窗口"
+move-window -t	   |[ . ]	   |"改变当前window的索引，window的位置会根据索引的顺序进行调整;"
+select-window -t   |[0~9]	   |"选中相应索引的window(0~9);"
+new-window		   |[ c ]	   |"新建window;"
+find-window		   |[ f ]	   |"在所有windows中匹配字符串;"
+display-message	   |[ i ]	   |"在状态栏显示当前window的信息;"
+last-window		   |[ l ]	   |"移动到上1个激活window;"
+next-window		   |[ n ]	   |"移动到下1个window;"
+choose-window	   |[ w ]	   |"通过窗口列表选择当前窗口;"
 
 
 ## pane
-rotate-window		[ C-o ]		"当前window的panes向前移动，所以效果就是pane与后1个pane进行置换;"
-rotate-window -D	[ M-o ]		"与rotate-window的方向相反;"
-select-pane(-t +)	[ o ]		"选中当前window的前1个pane, 类似C-o;"
-break-pane			[ ! ]		"把当前window的当前pane移除，成为独立的window;"
-last-pane			[ ; ]		"移动到当前window的上1个激活pane;"
-display-panes		[ q ]		"显示当前窗口所有pane的index,方便选择;"
-select-pane -m		[ m ]		"mark 当前pane, 窗口标签会多个M标志,pane的边框也会高亮,不知其他用途;"
-select-pane -M		[ M ]		"清除mark;"
-kill-pane			[ x ]		"关闭当前pane,会有确认提示;"
-resize-pane -Z		[ z ]		"切换当前window的当前pane是否占满整个window, 占满屏幕是窗口标志会有Z标志;" 
-swap-pane -U		[ { ]		"把当前的pane与前1个pane互换;"
-swap-pane -D		[ { ]		"把当前的pane与后1个pane互换;"
-select-pane -U		[ UP ]		"选中当前pane的上方pane;"
-select-pane -D		[ DOWN ]	"选中当前pane的下方pane;"
-select-pane -L		[ LEFT ]	"选中当前pane的左方pane;"
-select-pane -R		[ RIGHT ]	"选中当前pane的右方pane;"
-select-layout even-horizontal	[ M-1 ]	"按照水平方向排列当前window的panes;"
-select-layout even-vertical		[ M-2 ]	"按照垂直方向排列当前window的panes;"
-select-layout main-horizontal	[ M-3 ]	"第1个pane与其他panes垂直排列，其他pane按水平排列;"
-select-layout main-vertical		[ M-4 ]	"第1个pane与其他panes水平排列，其他pane按垂直排列;"
-select-layout tailed			[ M-5 ]	"所有panes平分window;"
-next-layout			[ space ]	"设置为下一个layout;"
-resize-pane -U/D/L/R 5	[ M-Up/Down/Left/Right ]	"以5cells的步长调整当前pane的大小;"
-resize-pane -U/D/L/R 	[ C-Up/Down/Left/Right ]	"微调当前pane的大小;"
+命令Command                     |默认映射                   |命令简介
+--------------------------------|---------------------------|---------------------------------------------------------------------------
+rotate-window	                |[ C-o ]		            |"当前window的panes向前移动，所以效果就是pane与后1个pane进行置换;"
+rotate-window -D                |[ M-o ]		            |"与rotate-window的方向相反;"
+select-pane(-t +)               |[ o ]		                |"选中当前window的前1个pane, 类似C-o;"
+break-pane		                |[ ! ]		                |"把当前window的当前pane移除，成为独立的window;"
+last-pane		                |[ ; ]		                |"移动到当前window的上1个激活pane;"
+display-panes	                |[ q ]		                |"显示当前窗口所有pane的index,方便选择;"
+select-pane -m	                |[ m ]		                |"mark 当前pane, 窗口标签会多个M标志,pane的边框也会高亮,不知其他用途;"
+select-pane -M	                |[ M ]		                |"清除mark;"
+kill-pane		                |[ x ]		                |"关闭当前pane,会有确认提示;"
+resize-pane -Z	                |[ z ]		                |"切换当前window的当前pane是否占满整个window, 占满屏幕是窗口标志会有Z标志;" 
+swap-pane -U	                |[ { ]		                |"把当前的pane与前1个pane互换;"
+swap-pane -D	                |[ { ]		                |"把当前的pane与后1个pane互换;"
+select-pane -U	                |[ UP ]		                |"选中当前pane的上方pane;"
+select-pane -D	                |[ DOWN ]	                |"选中当前pane的下方pane;"
+select-pane -L	                |[ LEFT ]	                |"选中当前pane的左方pane;"
+select-pane -R	                |[ RIGHT ]	                |"选中当前pane的右方pane;"
+select-layout even-horizontal   |[ M-1 ]	                |"按照水平方向排列当前window的panes;"
+select-layout even-vertical	    |[ M-2 ]	                |"按照垂直方向排列当前window的panes;"
+select-layout main-horizontal   |[ M-3 ]	                |"第1个pane与其他panes垂直排列，其他pane按水平排列;"
+select-layout main-vertical	    |[ M-4 ]	                |"第1个pane与其他panes水平排列，其他pane按垂直排列;"
+select-layout tailed		    |[ M-5 ]	                |"所有panes平分window;"
+next-layout			            |[ space ]	                |"设置为下一个layout;"
+resize-pane -U/D/L/R 5          |[ M-Up/Down/Left/Right ]	|"以5cells的步长调整当前pane的大小;"
+resize-pane -U/D/L/R 	        |[ C-Up/Down/Left/Right ]	|"微调当前pane的大小;"
 
 
 ## buffers
-list-buffers		[ # ]		"列出当前粘帖板的数据;"
-delete-buffer		[ - ]		"删除buffer里面的数据;"
-choose-buffer		[ = ]		"选择buffer里面的数据进行粘帖;"
+命令Command        |默认映射   |命令简介
+-------------------|-----------|--------------------------------
+list-buffers	   |[ # ]	   |"列出当前粘帖板的数据;"
+delete-buffer	   |[ - ]	   |"删除buffer里面的数据;"
+choose-buffer	   |[ = ]	   |"选择buffer里面的数据进行粘帖;"
 
 
 ## others
-command-prompt		[ : ]		"进入command mode;"
-list-keys			[ ? ]		"列出所有命令快捷键设置;"
-clock-mode			[ t	]		"在当前pane显示时间;"
-
-## copy/paste mode
+命令Command        |默认映射   |命令简介
+-------------------|-----------|--------------------------------
+command-prompt	   |[ : ]	   |"进入command mode;"
+list-keys		   |[ ? ]	   |"列出所有命令快捷键设置;"
+clock-mode		   |[ t	]	   |"在当前pane显示时间;"
 
 
 # 进阶篇
